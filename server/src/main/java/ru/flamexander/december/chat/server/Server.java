@@ -49,5 +49,11 @@ public class Server {
 
     public synchronized void sendPrivateMessage(ClientHandler sender, String receiverUsername, String message) {
         // TODO homework
+        for (ClientHandler clientHandler : clients) {
+            if (clientHandler.getUsername().equals(receiverUsername)) {
+                clientHandler.sendMessage(sender.getUsername() + " отправил личное сообщение " + receiverUsername + ": " + message);
+                sender.sendMessage(sender.getUsername() + " отправил личное сообщение " + receiverUsername + ": " + message);
+            }
+        }
     }
 }
